@@ -1,7 +1,12 @@
-﻿#include <iostream>
+#include <iostream>
 #include <conio.h>
 #include <windows.h>
-using namespace std;
+
+using std::cout;
+using std::cin;
+using std::endl;
+using std::wcout;
+
 bool koniecGry;
 const int szerokoscPlanszy = 20; //Zmienna ustawiająca szerokosc planszy w tabeli
 const int wysokoscPlanszy = 20; //Zmienna ustawiająca wysokosc planszy w tabeli
@@ -73,7 +78,7 @@ void Rysowanie()
     }
 
     for (int i = 0; i < szerokoscPlanszy + 2; i++)  //Rysowanie dolnej lini planszy.
-        cout << "_";
+        wcout << L"▔";
     cout << endl;
     cout << "        Wynik:" << wynik << endl;
 }
@@ -93,7 +98,7 @@ void Wejscie()
     {
         dir = eKierunek::DOL;
     }
-
+    
     if (GetAsyncKeyState(VK_UP))
     {
         dir = eKierunek::GORA;
