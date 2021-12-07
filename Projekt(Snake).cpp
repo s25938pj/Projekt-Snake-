@@ -8,7 +8,7 @@ using std::endl;
 using std::wcout;
 
 bool koniecGry;
-const int szerokoscPlanszy = 20; //Zmienna ustawiająca szerokosc planszy w tabeli
+const int szerokoscPlanszy = 40; //Zmienna ustawiająca szerokosc planszy w tabeli
 const int wysokoscPlanszy = 20; //Zmienna ustawiająca wysokosc planszy w tabeli
 int x, y; //Zmienne dla pozycji glowy
 int owocX, owocY; //Zmienne dla pozycji owoców
@@ -27,11 +27,11 @@ void Ustawienia()
 
     koniecGry = false;
     dir = eKierunek::GORA; // Jeśli ustawimy STOP to waż nie bedzie sie ruszal dopoki nic nie nacisniemy
-    x = szerokoscPlanszy/ 2;  //Ustawiamy w tym miejscu pozycje węża
+    x = szerokoscPlanszy / 2;  //Ustawiamy w tym miejscu pozycje węża
     y = wysokoscPlanszy / 2;  //Ustawiamy w tym miejscu pozycje węża
     owocX = rand() % szerokoscPlanszy; // Ustawiamy owoce w losowych miejscach na planszy
     owocY = rand() % wysokoscPlanszy;  // Ustawiamy owoce w losowych miejscach na planszy
-    wynik= 0;
+    wynik = 0;
 }
 void Rysowanie()
 {
@@ -41,7 +41,7 @@ void Rysowanie()
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
     // szerokoscPlanszy ustawiamy + 2, poniewaz mamy wydrukowane 20 spacji wiec szerokosc musi byc szersza o 2
     for (int i = 0; i < szerokoscPlanszy + 2; i++) //Rysowanie gornej lini planszy
-        cout << "_";
+        cout << "-";
     cout << endl;
 
     for (int i = 0; i < wysokoscPlanszy; i++) //Rysowanie boków planszy
@@ -78,7 +78,7 @@ void Rysowanie()
     }
 
     for (int i = 0; i < szerokoscPlanszy + 2; i++)  //Rysowanie dolnej lini planszy.
-        wcout << L"▔";
+        cout << "-";
     cout << endl;
     cout << "        Wynik:" << wynik << endl;
 }
@@ -143,7 +143,7 @@ void Logika()
         break;
     }
     if (x > szerokoscPlanszy || x < 0 || y > wysokoscPlanszy || y < 0)
-      koniecGry = true;
+        koniecGry = true;
     //W przypadku jeśli chcemy aby po najechaniu na ściane wąż wychodził z naprzeciwnej ściany należy
    //usunąć powyższe 2 linie kodu i zamiast tego wstawić poniższe instrukcje warunkowe
     /*
@@ -158,7 +158,7 @@ void Logika()
     if (y >= wysokoscPlanszy)
     {
         y = 0;
-    } 
+    }
     else if (y < 0)
     {
         y = wysokoscPlanszy - 1;
@@ -186,6 +186,11 @@ int main()
         Wejscie();
         Logika();
         Sleep(33); //sleep(10);
+    }
+    if (koniecGry = true)
+    {
+        cout << endl;
+        cout << "              GAME OVER" << endl << "           Twoj wynik to: " << wynik << endl;
     }
     return 0;
 }
